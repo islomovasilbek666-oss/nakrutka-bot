@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: nakrutka-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        value: 8516651908:AAGnEFmwlTyOzgR7QA9gfonzTVl5tDC6WwY
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
+    healthCheckPath: /
+    autoDeploy: true
