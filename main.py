@@ -1156,28 +1156,13 @@ if __name__ == "__main__":
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
-
-    # Render.com da webhook ishlatish
+    
+    # Render uchun webhook
     if 'RENDER' in os.environ:
-        print("🌐 Render.com muhitida ishlayapti...")
-        # Webhook ni o'rnatish
-        import nest_asyncio
-
-        nest_asyncio.apply()
-
-        # Serverni ishga tushirish
+        print("🌐 Render da webhook ishlayapti...")
         app = create_app()
         web.run_app(app, host='0.0.0.0', port=8080)
     else:
-        # Local da polling ishlatish
-        print("💻 Local muhitda ishlayapti...")
-
-
-        async def main():
-            await dp.start_polling(bot)
-
-
-        try:
-            asyncio.run(main())
-        except KeyboardInterrupt:
-            print("\n\n🛑 Bot to'xtatildi!")
+        # Local uchun polling
+        print("💻 Local da polling ishlayapti...")
+        asyncio.run(dp.start_polling(bot))
